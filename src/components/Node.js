@@ -2,9 +2,11 @@ import React from 'react'
 import {useState,useEffect} from 'react';
 import './Node2.css'; 
 
-export default function Node({node}) {
+export default function Node({node,addWall,mouseDown,updateStart,moveStart,updateEnd,moveEnd}) {
     
     const [classState,setClassState] = useState('node');
+
+
 
     useEffect(() => {
         
@@ -24,10 +26,25 @@ export default function Node({node}) {
 
     }, []) 
       
-    
+    const doSomething = () => {
+        console.log(mouseDown)
+        if(mouseDown){
+            console.log("mouse over");
+            addWall(node.row,node.col);    
+        }
+    }
+
+    const updateToStartFinish = () => {
+        if(moveStart){
+            updateStart(node.row,node.col); 
+        }
+        if(moveEnd){
+            updateEnd(node.row,node.col);
+        }
+    }
     
     return (
-        <div id={`node-${node.row}-${node.col}`} className={classState} >
+        <div onMouseDown={() => {updateToStartFinish()}} onMouseOver={()=> {doSomething()}} id={`node-${node.row}-${node.col}`} className={classState} >
         
         </div>
     )

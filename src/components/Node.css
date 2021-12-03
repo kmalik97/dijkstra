@@ -1,0 +1,32 @@
+.node {
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    outline: 3px solid rgba(144, 175, 175, 0.75);
+    display: grid;
+  }
+
+  .clicked {
+    background-color: rgb(233, 218, 218) !important;
+   
+  }
+
+  .start {
+    background-color: rgb(1, 255, 56) !important;
+   
+  }
+
+  .end {
+    background-color: rgb(255, 0, 0) !important;
+   
+  }
+
+  .wall {
+    background-color: rgb(58, 54, 54) !important;
+   
+  }
+
+  .short {
+    background-color: rgb(13, 255, 85) !important;
+   
+  }

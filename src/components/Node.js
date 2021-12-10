@@ -42,10 +42,31 @@ export default function Node({node,addWall,mouseDown,updateStart,moveStart,updat
             updateEnd(node.row,node.col);
         }
     }
-    
+    const getBackgroundColor = () => {
+        let color;
+
+        if(node.value === 1){
+            color = '';
+        }else if(node.value === 2){
+            color = 'rgb(0, 255, 106)';
+        }
+        else if(node.value === 3){
+            color = 'rgb(157, 255, 0)';
+        }
+        else if(node.value === 4){
+            color = 'rgb(137, 144, 94)';
+        }
+        else if(node.value === 5){
+            color = 'rgb(255, 208, 0)';
+        }
+
+        return color;
+    };
+
+
     return (
-        <div onMouseDown={() => {updateToStartFinish()}} onMouseOver={()=> {doSomething()}} id={`node-${node.row}-${node.col}`} className={classState} >
-        
+        <div style={{backgroundColor: getBackgroundColor()}} onMouseDown={() => {updateToStartFinish()}} onMouseOver={()=> {doSomething()}} id={`node-${node.row}-${node.col}`} className={classState} >
+            {node.value}
         </div>
     )
 }

@@ -28,11 +28,13 @@ export default function PathPlanningVisualizer() {
   const [mouseDown, setMouseDown] = useState(false);
 
   const createNode = (col, row) => {
+    
     return {
       col,
       row,
       previousNode: null,
       distance: Infinity,
+      value : Math.floor(Math.random() * (5 - 1 + 1) + 1),
       isStart: col === START_GRID_COL && row === START_GRID_ROW,
       isEnd: col === END_GRID_COL && row === END_GRID_ROW,
     };

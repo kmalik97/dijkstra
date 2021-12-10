@@ -1,17 +1,23 @@
 .node {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     background-color: white;
     outline: 3px solid rgba(144, 175, 175, 0.75);
     display: grid;
+
+    padding: 1px;
+    color:black;
+    text-align: center;
+    font: 20px Arial, sans-serif;
+    user-select: none;
   }
   
   .finish {
-    background-color: red;
+    background-color: red !important;
   }
   
   .start {
-    background-color: green;
+    background-color: green !important;
   }
   
   .visited {

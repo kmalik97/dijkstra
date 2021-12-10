@@ -22,30 +22,31 @@ export default function PathPlanningVisualizer() {
   const [END_GRID_COL,setEndGridCol] = useState(20);
   const [moveStartClicked,setMoveStartClicked] = useState(false);
   const [moveEndClicked,setEndClicked] = useState(false); 
+  const [randWeight, setRandWeight] = useState(false)
 
   const [board, setBoard] = useState([]);
 
   const [mouseDown, setMouseDown] = useState(false);
 
-  const createNode = (col, row) => {
+  const createNode = (col, row,rand) => {
     
     return {
       col,
       row,
       previousNode: null,
       distance: Infinity,
-      value : Math.floor(Math.random() * (5 - 1 + 1) + 1),
+      value : rand ? Math.floor(Math.random() * (5 - 1 + 1) + 1) : 1,
       isStart: col === START_GRID_COL && row === START_GRID_ROW,
       isEnd: col === END_GRID_COL && row === END_GRID_ROW,
     };
   };
 
-  const resetGrid = () => {
+  const resetGrid = (rand) => {
     const grid = [];
     for (let row = 0; row < GRID_ROW; row++) {
       const currentRow = [];
       for (let col = 0; col < GRID_COL; col++) {
-        currentRow.push(createNode(col, row));
+        currentRow.push(createNode(col, row,rand));
       }
       grid.push(currentRow);
     }
@@ -54,7 +55,7 @@ export default function PathPlanningVisualizer() {
 
   useEffect(() => {
     console.log("Initalizing Grid");
-    resetGrid();
+    resetGrid(randWeight);
   }, []);
 
   const handleButtonClick = () => {
@@ -152,6 +153,11 @@ export default function PathPlanningVisualizer() {
     setBoard(newGrid);
   }
 
+  const resetNodeWeights = () => {
+    setRandWeight(!randWeight)
+    resetGrid(randWeight)
+  }
+
   const moveEnd = () => {
 
     setEndClicked(true); 
@@ -207,6 +213,17 @@ export default function PathPlanningVisualizer() {
               }}
             >
               Reset Grid
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button
+              variant="contained"
+              color="error"
+              onClick={() => {
+                resetNodeWeights();
+              }}
+            >
+              Random Weights
             </Button>
           </Grid>
           <Grid item>
